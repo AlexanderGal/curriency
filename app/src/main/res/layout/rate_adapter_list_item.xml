@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/currency_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/list_item_padding">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/currency_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/currency_nominal"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            tools:text="Название валюты" />
+
+
+        <TextView
+            android:id="@+id/currency_nominal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/nominal_padding"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/currency_char_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/currency_name"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            tools:text="КОД" />
+
+        <TextView
+            android:id="@+id/currency_num_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/currency_name"
+            android:layout_marginLeft="@dimen/num_code_margin"
+            android:layout_toEndOf="@+id/currency_char_code"
+            android:layout_toRightOf="@+id/currency_char_code"
+            tools:text="(номер)" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginLeft="@dimen/num_code_margin"
+        android:id="@+id/currency_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        tools:text="КУРС" />
+</LinearLayout>
