@@ -28,6 +28,12 @@ public class CurrenciHistoryList implements Serializable {
     @Attribute(name = "ID")
     private String mID;
 
+    @Attribute(name = "DateRange1")
+    private String startDate;
+
+    @Attribute(name = "DateRange2")
+    private String endDate;
+
     @Attribute(name = "name")
     private String mName;
 

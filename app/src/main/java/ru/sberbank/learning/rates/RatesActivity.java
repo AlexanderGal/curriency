@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -20,7 +21,9 @@ import java.lang.ref.WeakReference;
 import java.net.URL;
 
 import ru.sberbank.learning.rates.adapters.CurrencyAdapter;
+import ru.sberbank.learning.rates.networking.CurrenciHistoryList;
 import ru.sberbank.learning.rates.networking.CurrenciesList;
+import ru.sberbank.learning.rates.networking.CurrencyHistory;
 import ru.sberbank.learning.rates.storage.CurrenciesStorage;
 
 public class RatesActivity extends Activity {
@@ -107,7 +110,9 @@ public class RatesActivity extends Activity {
             if (weakReferenceStorage.get().isReady()) {
                 return null;
             }
-            try (InputStream is = new URL(CBR_URL).openStream()) {
+            try (InputStream is = new URL(CBR_URL).openStream();
+                    InputStream da = new URL("https://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=02/03/2017&date_req2=07/03/2017&VAL_NM_RQ=R01235").openStream();) {
+                Log.e("ch",CurrenciHistoryList.readFromStream(da).getCurrencies().toString());
                 return CurrenciesList.readFromStream(is);
             } catch (IOException e) {
                 e.printStackTrace();

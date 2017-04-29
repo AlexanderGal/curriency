@@ -24,6 +24,7 @@
             android:inputType="number"
             android:textAlignment="viewStart"
             tools:text="1234"
+
             />
 
         <Space
