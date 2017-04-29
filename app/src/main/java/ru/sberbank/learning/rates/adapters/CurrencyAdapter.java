@@ -1,24 +1,22 @@
-package ru.sberbank.learning.rates;
+package ru.sberbank.learning.rates.adapters;
 
-import android.graphics.Color;
-import android.os.AsyncTask;
-import android.util.Log;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.lang.ref.WeakReference;
-import java.text.DecimalFormat;
 import java.util.List;
 
+import ru.sberbank.learning.rates.CurrencyCalculateActivity;
+import ru.sberbank.learning.rates.R;
 import ru.sberbank.learning.rates.networking.Currency;
 import ru.sberbank.learning.rates.storage.CurrenciesStorage;
 
 public class CurrencyAdapter extends BaseAdapter {
-    private static int viewCount = 0;
-    List<Currency> list;
+    private List<Currency> list;
 
     public CurrencyAdapter(CurrenciesStorage storage) {
         this.list = storage.getLoadedList().getCurrencies();
@@ -43,7 +41,6 @@ public class CurrencyAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
-            Log.e("-------VIEW COUNT"," Views : " + ++viewCount);
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             view = inflater.inflate(R.layout.rate_adapter_list_item, parent, false);
             ViewHolder viewHolder = new ViewHolder(
@@ -68,6 +65,7 @@ public class CurrencyAdapter extends BaseAdapter {
         return view;
     }
 
+
     private class ViewHolder {
         TextView mName;
         TextView mNumbCode;
@@ -75,7 +73,7 @@ public class CurrencyAdapter extends BaseAdapter {
         TextView mNominal;
         TextView mValue;
 
-        public ViewHolder(TextView mName, TextView mNumbCode, TextView mCharCode, TextView mNominal, TextView mValue) {
+         ViewHolder(TextView mName, TextView mNumbCode, TextView mCharCode, TextView mNominal, TextView mValue) {
             this.mName = mName;
             this.mNumbCode = mNumbCode;
             this.mCharCode = mCharCode;
@@ -83,7 +81,8 @@ public class CurrencyAdapter extends BaseAdapter {
             this.mValue = mValue;
         }
 
-        public void setData(String name, int numbCode, String charCode, Double nominal, Double value) {
+         @SuppressLint("DefaultLocale")
+         void setData(String name, int numbCode, String charCode, Double nominal, Double value) {
             mName.setText(name);
             mNumbCode.setText("(" + numbCode + ")");
             mCharCode.setText(charCode);
